@@ -59,6 +59,12 @@ export async function initInventoryDb() {
   `);
 }
 
+export async function keepInventoryDbAlive() {
+  const db = requirePool();
+  await db.query('select 1');
+}
+
+
 export async function ensureStartingInventory(userId: string) {
   const db = requirePool();
   const existing = await db.query('select user_id from user_bytes where user_id = $1', [userId]);

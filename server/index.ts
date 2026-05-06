@@ -26,6 +26,7 @@ import {
   getOwnedActions,
   getOwnedProtocols,
   initInventoryDb,
+  keepInventoryDbAlive,
   openPack,
 } from './inventory';
 import {
@@ -71,6 +72,18 @@ const PORT = Number(process.env.PORT ?? 3001);
 const app = express();
 app.use(cors({ origin: '*' }));
 app.use(express.json());
+app.get('/health', (_req, res) => {
+  res.json({ ok: true });
+});
+app.get('/health/db', async (_req, res) => {
+  try {
+    await keepInventoryDbAlive();
+    res.json({ ok: true });
+  } catch (err) {
+    sendError(res, err);
+  }
+});
+
 
 function sendError(res: express.Response, err: unknown) {
   if (err instanceof AuthError) {
