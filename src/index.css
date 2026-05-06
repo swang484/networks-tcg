@@ -1,0 +1,143 @@
+:root {
+  --text: #b3c5e6;
+  --text-h: #ffffff;
+  --bg: #060912;
+  --border: rgba(95, 208, 255, 0.22);
+  --code-bg: #0c1424;
+  --accent: #5fd0ff;
+  --accent-bg: rgba(95, 208, 255, 0.12);
+  --accent-border: rgba(95, 208, 255, 0.45);
+  --social-bg: rgba(12, 20, 36, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.5) 0 10px 15px -3px, rgba(0, 0, 0, 0.35) 0 4px 6px -2px;
+  --net-cyan: #5fd0ff;
+  --net-cyan-soft: #88e7ff;
+  --net-green: #4cc28a;
+  --net-red: #ff7c7c;
+  --net-purple: #b380ff;
+  --net-amber: #ffc43c;
+  --panel-bg: rgba(12, 20, 36, 0.78);
+  --panel-bg-strong: rgba(12, 20, 36, 0.92);
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+/* networks theme is forced — same dark palette in light + dark mode */
+
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  text-align: center;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(95, 208, 255, 0.12), transparent 55%),
+    radial-gradient(ellipse at 85% 85%, rgba(122, 80, 220, 0.12), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(76, 194, 138, 0.06), transparent 70%),
+    var(--bg);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(95, 208, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 208, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: 0 0;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 95%);
+  animation: bg-grid-shift 24s linear infinite;
+}
+
+@keyframes bg-grid-shift {
+  to { background-position: 44px 44px; }
+}
+
+#root {
+  position: relative;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
